@@ -35,7 +35,7 @@ NginxConf.create_http_conf = function (domain) {
     
     console.log('准备写入nginx conf',conf_content)
     //写入nginx conf文件到nginx_auto_conf_path
-    fs.writeFileSync(nginx_auto_conf_path + file_name,conf_content,'a');    
+    fs.writeFileSync(nginx_auto_conf_path + file_name,conf_content);    
 
 }
 
@@ -62,14 +62,21 @@ NginxConf.restart_nginx = function(){
  */
 NginxConf.create_new_https_cert = async function(domain){
 
-    fs.mkdirSync(http_web_dir + domain);
+    
+    try{
+        fs.mkdirSync(http_web_dir + domain);
+    }
+    catch(e){
+        console.log('文件夹创建失败',http_web_dir + domain)
+    }
+    
 
     NginxConf.create_http_conf(domain);
 
     await NginxConf.restart_nginx();
 
-    var cmd = `acme.sh --issue -d ${domain} --webroot ${http_web_dir+domain}/`
-    console.log('调用acme.sh',cmd);
+    var cmd = `acme.sh --issue -d ${domain} --webroot ${http_web_dir+domain}`
+    console.log(cmd);
     exec(cmd,function(err,stdout,stderr){
         console.log(err,stdout,stderr);
     })
