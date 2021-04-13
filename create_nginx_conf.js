@@ -27,7 +27,7 @@ NginxConf.write_https_conf = function(domain){
         listen 443;
         server_name ${domain};
         ssl on;
-        ssl_certificate ${domain}.cer
+        ssl_certificate ${domain}.cer;
         ssl_certificate_key ${domain}.key;
         ssl_session_timeout 5m;
         ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
