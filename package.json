@@ -1,0 +1,19 @@
+{
+  "name": "certbot",
+  "version": "1.0.0",
+  "description": "All I need is push an fucking button !",
+  "main": "create_nginx_conf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xhacker5000/certbot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xhacker5000/certbot/issues"
+  },
+  "homepage": "https://github.com/xhacker5000/certbot#readme"
+}
