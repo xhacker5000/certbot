@@ -33,6 +33,7 @@ NginxConf.create_http_conf = function (domain) {
       }
       `
     
+    console.log('准备写入nginx conf',conf_content)
     //写入nginx conf文件到nginx_auto_conf_path
     fs.writeFileSync(nginx_auto_conf_path + file_name,conf_content,'a');    
 
@@ -40,6 +41,8 @@ NginxConf.create_http_conf = function (domain) {
 
 
 NginxConf.restart_nginx = function(){
+
+    console.log('正在重启...nginx')
     return new Promise((reslove,reject)=>{
         exec(restart_nginx_cmd,function(err, stdout, stderr){
             console.log(err,stdout,stderr);
@@ -70,7 +73,7 @@ NginxConf.create_new_https_cert = async function(domain){
     exec(cmd,function(err,stdout,stderr){
         console.log(err,stdout,stderr);
     })
-    
+
 }
 
 
