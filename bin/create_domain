@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+if (process.argv.length === 3 && (process.argv[2] === '-v' || process.argv[2] === '--version')) {
+    console.log(require('../package').version);
+    return;
+}
+if(process.argv.length != 3){
+    console.log('请填写域名');
+    return;
+}
+
+var target_domain = process.argv[2];
+console.log('准备为',target_domain,'申请证书...');
+
+
+var NginxConf = require('../create_nginx_conf');
+NginxConf.create_new_https_cert(target_domain)
